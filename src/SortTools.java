@@ -8,7 +8,6 @@
  * Slip days used: N/A
  */
 
-
 public class SortTools {
     /**
      * This method tests to see if the given array is sorted.
@@ -17,8 +16,18 @@ public class SortTools {
      * @return true if array is sorted
      */
     public static boolean isSorted(int[] x, int n) {
-        for(int i = 0)
-        return false;
+        //conforming to edge cases where either array is empty or 0 length search
+        if(n == 0 || x.length == 0 || n > x.length)
+            return false;
+        //length 1 is always sorted
+        if(n == 1)
+            return true;
+        //iterating through and checking the next variable to see if it is
+        for(int i = 0; i < n - 1; i++){
+            if(x[i] > x[i+1])
+                return false;
+        }
+        return true;
     }
 
     /**
