@@ -38,5 +38,31 @@ public class Main {
         System.out.println("x[] = " + Arrays.toString(x) + ", n = "+ n);
         System.out.println("Correct output: true, Your output: " + SortTools.isSorted(x,n));
 
+        System.out.println("\n\nTesting find");
+        x = new int[]{1,2,3};
+        n = 3;
+        int v = 3;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: 2, Your output: " + SortTools.find(x,n,v));
+        x = new int[]{100};
+        n = 1;
+        v = 100;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: 0, Your output: " + SortTools.find(x,n,v));
+        x = new int[]{2,2,2,2,2};
+        n = 5;
+        v = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: 0-4, Your output: " + SortTools.find(x,n,v));
+        x = new int[]{-1, 2, 2, 3};
+        n = 4;
+        v = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: 1, Your output: " + SortTools.find(x,n,v));
+        v = 3;
+        n = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: -1, Your output: " + SortTools.find(x,n,v));
+
     }
 }

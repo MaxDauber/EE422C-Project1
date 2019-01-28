@@ -22,7 +22,7 @@ public class SortTools {
         //length 1 is always sorted
         if(n == 1)
             return true;
-        //iterating through and checking the next variable to see if it is
+        //iterating through and checking the next variable to see if it is less than the previous
         for(int i = 0; i < n - 1; i++){
             if(x[i] > x[i+1])
                 return false;
@@ -38,9 +38,21 @@ public class SortTools {
      * @return index of v if v is contained within x. -1 if v is not contained within x
      */
     public static int find(int[] x, int n, int v) {
-        // stub only, you write this!
-        // TODO: complete it
+
+        //implementing binary search with n being the right bound of the binary search
+        int left = 0;
+        int right = n - 1;
+        while(right >= left){
+            int middle = (left + right) / 2;
+            if(x[middle] == v)
+                return middle;
+            if(x[middle] < v)
+                left = middle + 1;
+            if(x[middle] > v)
+                right = middle - 1;
+        }
         return -1;
+
     }
 
     /**
