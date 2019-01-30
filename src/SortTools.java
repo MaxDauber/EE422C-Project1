@@ -8,6 +8,8 @@
  * Slip days used: N/A
  */
 
+import java.util.Arrays;
+
 public class SortTools {
     /**
      * This method tests to see if the given array is sorted.
@@ -63,9 +65,44 @@ public class SortTools {
      * @return a new array containing the first n elements of x, and v
      */
     public static int[] insertGeneral(int[] x, int n, int v){
-        // stub only, you write this!
-        // TODO: complete it
-        return null;
+        int ret[] = {};
+        if(n == 0)
+            return ret;
+
+        //if v lies before the first element of the original array, set it as the first value of the new array
+        if(v < x[0]) {
+            ret = new int[n + 1];
+            ret[0] = v;
+            for(int i = 1; i < n+1; i++)
+                ret[i] = x[i-1];
+        }
+
+        //if v lies after the last element of the original array, set it as the last value of the new array
+        else if(v >= x[x.length - 1]){
+            ret = Arrays.copyOfRange(x,0,n+1);
+            ret[ret.length - 1] = v;
+
+        }
+
+        //if v lies somewhere in the original array
+        else{
+            ret = new int[n + 1];
+            boolean inserted = false;
+            for(int i = 0; i < n+1; i++){
+                if(i > 0 && !inserted && v >= x[i-1] && v <= x[i]){
+                    ret[i] = v;
+                    inserted = true;
+                }
+                //need to reset which index in return array is being set depending on if v is inserted
+                else if(!inserted){
+                    ret[i] = x[i];
+                }
+                else{
+                    ret[i] = x[i-1];
+                }
+            }
+        }
+        return ret;
     }
 
     /**

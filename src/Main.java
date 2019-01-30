@@ -64,5 +64,31 @@ public class Main {
         System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
         System.out.println("Correct output: -1, Your output: " + SortTools.find(x,n,v));
 
+        System.out.println("\n\nTesting insertGeneral");
+        x = new int[]{1,2,4};
+        n = 3;
+        v = 3;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: [1, 2, 3, 4], Your output: " + Arrays.toString(SortTools.insertGeneral(x,n,v)));
+        x = new int[]{100};
+        n = 1;
+        v = -100;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: [-100, 100], Your output: " + Arrays.toString(SortTools.insertGeneral(x,n,v)));
+        x = new int[]{2,2,2,2,2};
+        n = 5;
+        v = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: [2, 2, 2, 2, 2, 2], Your output: " + Arrays.toString(SortTools.insertGeneral(x,n,v)));
+        x = new int[]{-1, 2, 2, 3};
+        n = 4;
+        v = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: [-1, 2, 2, 2, 3], Your output: " + Arrays.toString(SortTools.insertGeneral(x,n,v)));
+        v = 3;
+        n = 2;
+        System.out.println("x[] = " + Arrays.toString(x) + ", v = "+ v + ", n = "+ n);
+        System.out.println("Correct output: [-1, 2, 3], Your output: " + Arrays.toString(SortTools.insertGeneral(x,n,v)));
+
     }
 }
