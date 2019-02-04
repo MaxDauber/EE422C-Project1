@@ -78,30 +78,43 @@ public class SortTools {
         }
 
         //if v lies after the last element of the original array, set it as the last value of the new array
-        else if(v >= x[x.length - 1]){
+        else if(v > x[x.length - 1]){
             ret = Arrays.copyOfRange(x,0,n+1);
             ret[ret.length - 1] = v;
 
         }
 
-        //if v lies somewhere in the original array
+        //if v lies somewhere in the original array, first search to see if it is in the array
+        //if it is, return the original array with size n
+        //if not, return a new array with the new value inserted
         else{
-            ret = new int[n + 1];
-            boolean inserted = false;
-            for(int i = 0; i < n+1; i++){
-                if(i > 0 && !inserted && v >= x[i-1] && v <= x[i]){
-                    ret[i] = v;
-                    inserted = true;
-                }
-                //need to reset which index in return array is being set depending on if v is inserted
-                else if(!inserted){
-                    ret[i] = x[i];
-                }
-                else{
-                    ret[i] = x[i-1];
+            //check to see if v is in array
+            int loc = find(x,n,v);
+
+            if(loc < 0){
+                ret = new int[n + 1];
+                boolean inserted = false;
+                for(int i = 0; i < n+1; i++){
+
+                    if(i > 0 && !inserted && v >= x[i-1] && v <= x[i]){
+                        ret[i] = v;
+                        inserted = true;
+                    }
+                    //need to reset which index in return array is being set depending on if v is inserted
+                    else if(!inserted){
+                        ret[i] = x[i];
+                    }
+                    else{
+                        ret[i] = x[i-1];
+                    }
                 }
             }
+
+            else{
+                ret = Arrays.copyOfRange(x,0,n);
+            }
         }
+
         return ret;
     }
 
@@ -113,10 +126,51 @@ public class SortTools {
      * @return n if v is already in x, otherwise returns n+1
      */
     public static int insertInPlace(int[] x, int n, int v){
-        // stub only, you write this!
-        // TODO: complete it
-        return -1;
+        //check to see if v is in array
+        int loc = find(x,n,v);
+        int[] y;
+        if(loc >=0)
+            return n;
+        else{
+            //if v lies before the first element of the original array, set it as the first value of the new array
+            if(v < x[0]) {
+                y = new int[n + 1];
+                y[0] = v;
+                for(int i = 1; i < n+1; i++)
+                    y[i] = x[i-1];
+            }
+            //if v lies after the last element of the original array, set it as the last value of the new array
+            else if(v > x[x.length - 1]){
+                y = Arrays.copyOfRange(x,0,n+1);
+                y[y.length - 1] = v;
+            }
+
+            //if v lies somewhere in the original array, first search to see if it is in the array
+            //if it is, return the original array with size n
+            //if not, return a new array with the new value inserted
+            else{
+                y = new int[n + 1];
+                boolean inserted = false;
+                for(int i = 0; i < n+1; i++){
+                    if(i > 0 && !inserted && v >= x[i-1] && v <= x[i]){
+                        y[i] = v;
+                        inserted = true;
+                    }
+                    //need to reset which index in return array is being set depending on if v is inserted
+                    else if(!inserted){
+                        y[i] = x[i];
+                    }
+                    else{
+                        y[i] = x[i-1];
+                    }
+                }
+            }
+            x = y;
+            return n+1;
+        }
+
     }
+
 
     /**
      * This method sorts a given array using insertion sort
@@ -124,5 +178,16 @@ public class SortTools {
      * @param n is the number of elements of the array to be sorted
      */
     public static void insertSort(int[] x, int n){
+
+        for(int i = 0; i < n; i++){
+            int cur = x[i];
+            int prev = i - 1;
+            //keep moving variables until the current element is in the right position
+            while(prev >= 0 && x[prev] > cur){
+                x[prev + 1] = x[prev];
+                prev--;
+            }
+            x[prev+1] = cur;
+        }
     }
 }
