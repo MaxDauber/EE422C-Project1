@@ -10,6 +10,7 @@
 
 import java.util.Arrays;
 
+
 public class SortTools {
     /**
      * This method tests to see if the given array is sorted.
@@ -94,20 +95,16 @@ public class SortTools {
             if(loc < 0){
                 ret = new int[n + 1];
                 boolean inserted = false;
-                for(int i = 0; i < n+1; i++){
-
-                    if(i > 0 && !inserted && v >= x[i-1] && v <= x[i]){
+                for(int i = 0; i < n+1; i++)
+                    if (i > 0 && !inserted && v >= x[i - 1] && v <= x[i]) {
                         ret[i] = v;
                         inserted = true;
                     }
                     //need to reset which index in return array is being set depending on if v is inserted
-                    else if(!inserted){
-                        ret[i] = x[i];
+                    else if (!inserted) ret[i] = x[i];
+                    else {
+                        ret[i] = x[i - 1];
                     }
-                    else{
-                        ret[i] = x[i-1];
-                    }
-                }
             }
 
             else{
